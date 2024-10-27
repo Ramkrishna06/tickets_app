@@ -2,6 +2,8 @@ import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ticket_app/Base/res/media.dart';
+import 'package:ticket_app/Base/widgets/App_Double_text.dart';
+import 'package:ticket_app/Base/widgets/Ticket_view.dart';
 
 import '../Base/res/style/app_style.dart';
 
@@ -11,12 +13,12 @@ class Homescreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFeeedf2),
+      backgroundColor: Appstyle.bgcolor,
       body: ListView(
-        padding: EdgeInsets.symmetric(vertical: 60, horizontal: 5),
         children: [
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.symmetric(vertical: 60, horizontal: 20),
+            //padding: EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: [
                 Row(
@@ -25,7 +27,7 @@ class Homescreen extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Good Morning", style: Appstyle.headline3),
+                        Text("Good Morning", style: Appstyle.headlinestyle3),
                         SizedBox(
                           height: 5,
                         ),
@@ -63,7 +65,12 @@ class Homescreen extends StatelessWidget {
                       Text("Search Here"),
                     ],
                   ),
-                )
+                ),
+                SizedBox(height: 40),
+                AppDoubleText(
+                    bigtext: "Upcoming Flight", smalltext: "View all"),
+                SizedBox(height: 20),
+                TicketView(),
               ],
             ),
           )

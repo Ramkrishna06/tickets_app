@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 
 class AppLayoutBuilder extends StatelessWidget {
   final int randomnumber;
-  const AppLayoutBuilder({super.key, required this.randomnumber});
+  final double width;
+  const AppLayoutBuilder({super.key, required this.randomnumber,this.width=3});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class AppLayoutBuilder extends StatelessWidget {
           children: List.generate(
             (constraints.constrainWidth() / randomnumber).floor(),
             (index) => SizedBox(
-              width: 2,
+              width: width,
               height: 2,
               child: DecoratedBox(
                 decoration: BoxDecoration(color: Colors.white),

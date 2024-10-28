@@ -70,7 +70,15 @@ class Homescreen extends StatelessWidget {
                 AppDoubleText(
                     bigtext: "Upcoming Flight", smalltext: "View all"),
                 SizedBox(height: 20),
-                TicketView(),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,//this line is most important
+                  child: Row(
+                    children: [
+                      TicketView(),
+                      TicketView(),
+                    ],
+                  ),
+                )
               ],
             ),
           )

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../screens/Homescreen.dart';
+import '../screens/Home/Homescreen.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});
@@ -26,7 +26,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
         _selectedIndex = index;
       },
     );
-    print("tapped $_selectedIndex");
+    print("tapped ${_selectedIndex}");
   }
 
   @override

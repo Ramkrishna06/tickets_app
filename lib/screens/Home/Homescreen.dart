@@ -2,10 +2,14 @@ import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ticket_app/Base/res/media.dart';
+import 'package:ticket_app/Base/utilities/all_json.dart';
 import 'package:ticket_app/Base/widgets/App_Double_text.dart';
 import 'package:ticket_app/Base/widgets/Ticket_view.dart';
+import 'package:ticket_app/screens/Home/widget/hotel.dart';
+import 'package:ticket_app/screens/Home/Hotelscreen.dart';
 
-import '../Base/res/style/app_style.dart';
+
+import '../../Base/res/style/app_style.dart';
 
 class Homescreen extends StatelessWidget {
   const Homescreen({super.key});
@@ -68,17 +72,45 @@ class Homescreen extends StatelessWidget {
                 ),
                 SizedBox(height: 40),
                 AppDoubleText(
-                    bigtext: "Upcoming Flight", smalltext: "View all"),
+                  bigtext: "Upcoming Flight",
+                  smalltext: "View all",
+                  func: () => Navigator.pushNamed(context, "all_tickets"),
+                ),
                 SizedBox(height: 20),
                 SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,//this line is most important
+                  scrollDirection:
+                      Axis.horizontal, //this line is most important
                   child: Row(
-                    children: [
-                      TicketView(),
-                      TicketView(),
-                    ],
+                    children: ticketList
+                        .take(3)
+                        .map((singleticket) => TicketView(ticket: singleticket))
+                        .toList(),
                   ),
-                )
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                AppDoubleText(
+                  bigtext: "Hotels",
+                  smalltext: "View all",
+                  func: () => Navigator.pushNamed(context, "hotel_screen"),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: hotelList
+                        .map(
+                          (fristhotel) => Container(
+                            padding: EdgeInsets.all(10),
+                            child: HotelSection(hoteldetails: fristhotel),
+                          ),
+                        )
+                        .toList(),
+                  ),
+                ),
               ],
             ),
           )

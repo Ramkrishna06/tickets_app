@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ticket_app/screens/Home/Hotelscreen.dart';
+import 'package:ticket_app/screens/Home/all_tickets.dart';
 
 import 'Base/bottom_nav_bar.dart';
 
@@ -29,7 +31,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: BottomNavBar(),
+      // home: BottomNavBar(),
+      routes: {
+        //hoem route "/"
+        "/":(context)=>BottomNavBar(),
+        "all_tickets":(context)=>AllTickets(),
+        "hotel_screen":(context)=>HotelScreen(),
+      },
     );
   }
 }

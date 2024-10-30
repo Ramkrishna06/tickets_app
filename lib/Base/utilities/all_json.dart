@@ -1,18 +1,18 @@
 List<Map<String, dynamic>> hotelList = [
   {
-    'image': 'one.png',
+    'image': 'hotel_room.png',
     'place': 'Open Space',
     'destination': 'London',
     'price': 25
   },
   {
-    'image': 'two.png',
+    'image': "hotel_room_view_1.png",
     'place': 'Global Will',
     'destination': 'London',
     'price': 40
   },
   {
-    'image': 'three.png',
+    'image': 'hotel_room_1.png',
     'place': 'Tallest Building',
     'destination': 'Dubai',
     'price': 68
@@ -49,6 +49,21 @@ List<Map<String, dynamic>> ticketList = [
 'departure_time':"09:00 AM",
 "number":45
 },
+  {
+    'from': {
+      'code':"HOG",
+      'name':"Hogwarts"
+    },
+    'to': {
+      'code':"NYC",
+      'name':"New-york"
+    },
+    'flying_time': '6H 20M',
+    'date': "23 APR",
+    'departure_time':"09:00 PM",
+    "number":49
+  },
+
 ];
 class AppRoutes{
 

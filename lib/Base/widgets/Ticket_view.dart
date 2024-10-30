@@ -10,7 +10,9 @@ import 'package:ticket_app/Base/widgets/Textstyle_forth.dart';
 import 'package:ticket_app/Base/widgets/Textstyle_third.dart';
 
 class TicketView extends StatelessWidget {
-  const TicketView({super.key});
+  final bool wholescreen;
+  Map<String, dynamic> ticket;//this is map name as ticket containing necessery information about tickets
+  TicketView({super.key, required this.ticket,this.wholescreen=false});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,7 @@ class TicketView extends StatelessWidget {
     return SizedBox(
       width: size.width * 0.85,
       child: Container(
-        margin: EdgeInsets.only(right: 16),
+        margin: EdgeInsets.only(right: wholescreen==true? 0:16),
         child: Column(
           children: [
             //blue part ticket
@@ -33,7 +35,7 @@ class TicketView extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Textstylethird(text: "NYC"),
+                      Textstylethird(text: ticket["from"]["code"]),
                       Expanded(
                         child: Container(),
                       ),
@@ -55,27 +57,32 @@ class TicketView extends StatelessWidget {
                       Expanded(
                         child: Container(),
                       ),
-                      Textstylethird(text: "NYC")
+                      Textstylethird(text: ticket["to"]["code"]),
                     ],
                   ),
                   Row(
                     children: [
                       SizedBox(
                         width: 100,
-                        child: Textstyleforth(text: "New-York",),
+                        child: Textstyleforth(
+                          text: ticket["from"]["name"],
+                        ),
                       ),
-
                       Expanded(
                         child: Container(),
                       ),
-                      Textstyleforth(text: "8H:30M",),
+                      Textstyleforth(
+                        text: ticket["flying_time"],
+                      ),
                       Expanded(
                         child: Container(),
                       ),
                       SizedBox(
                         width: 100,
                         child: Textstyleforth(
-                            text: "London",aling: TextAlign.end,),
+                          text: ticket["to"]["name"],
+                          aling: TextAlign.end,
+                        ),
                       ),
                     ],
                   ),
@@ -109,15 +116,19 @@ class TicketView extends StatelessWidget {
                   borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(21),
                       bottomRight: Radius.circular(21))),
-              child: Column(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      AppColoumTextLayout(toptext: "1 May", bottomtext: "Date"),
-                      AppColoumTextLayout(toptext: "08:00AM", bottomtext: "Departure time",aling: CrossAxisAlignment.center,),
-                      AppColoumTextLayout(toptext: "23", bottomtext: "Number",aling: CrossAxisAlignment.end,),
-                    ],
+                  AppColoumTextLayout(toptext: ticket["date"], bottomtext: "Date"),
+                  AppColoumTextLayout(
+                    toptext: ticket["departure_time"],
+                    bottomtext: "Departure time",
+                    aling: CrossAxisAlignment.center,
+                  ),
+                  AppColoumTextLayout(
+                    toptext: ticket["number"].toString(),
+                    bottomtext: "Number",
+                    aling: CrossAxisAlignment.end,
                   ),
                 ],
               ),

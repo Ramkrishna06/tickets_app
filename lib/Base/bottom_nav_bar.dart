@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:ticket_app/screens/search/search_screen.dart';
 
 import '../screens/Home/Homescreen.dart';
 
@@ -13,6 +15,7 @@ class BottomNavBar extends StatefulWidget {
 class _BottomNavBarState extends State<BottomNavBar> {
   final appscreen = [
     const Homescreen(),
+    const SearchScreen(),
     Center(child: const Text("Home")),
     Center(child: const Text("tickets")),
     Center(child: const Text("profile")),
@@ -41,7 +44,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
         showSelectedLabels: false,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Setting"),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: "Setting"),
           BottomNavigationBarItem(
               icon: Icon(Icons.airplane_ticket), label: "tickets"),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "profile"),

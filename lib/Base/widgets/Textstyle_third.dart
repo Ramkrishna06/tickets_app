@@ -5,15 +5,17 @@ import '../res/style/app_style.dart';
 
 class Textstylethird extends StatelessWidget {
   final String text;
+  final bool? isColor;
   final textAlign;
-  const Textstylethird({super.key,required this.text,this.textAlign=TextAlign.start});
+  const Textstylethird({super.key,required this.text,this.textAlign=TextAlign.start,this.isColor});
 
   @override
   Widget build(BuildContext context) {
     return Text(
+      textAlign: textAlign,
       text,
-      style: Appstyle.headlinestyle3
-          .copyWith(color: Colors.white),
+      style: isColor==null?Appstyle.headlinestyle3
+          .copyWith(color: Colors.white):Appstyle.headlinestyle3,
     );
   }
 }

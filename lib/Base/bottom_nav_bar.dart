@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ticket_app/screens/search/search_screen.dart';
+import 'package:ticket_app/screens/tickets/ticket_screen.dart';
 
 import '../screens/Home/Homescreen.dart';
 
@@ -16,10 +17,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
   final appscreen = [
     const Homescreen(),
     const SearchScreen(),
-    Center(child: const Text("Home")),
-    Center(child: const Text("tickets")),
-    Center(child: const Text("profile")),
-    Center(child: const Text("person")),
+    const TicketScreen(),
+    Center(child: const Text("person profile under development")),
   ];
 
   int _selectedIndex = 0;
@@ -43,11 +42,13 @@ class _BottomNavBarState extends State<BottomNavBar> {
         unselectedItemColor: Colors.black54,
         showSelectedLabels: false,
         items: const [
+
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: "Setting"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.airplane_ticket), label: "tickets"),
+              icon: Icon(Icons.airplane_ticket_outlined), label: "tickets"),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "profile"),
+
         ],
       ),
     );

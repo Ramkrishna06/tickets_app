@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:ticket_app/Base/res/style/app_style.dart';
 
 class AppTicketsTabs extends StatelessWidget {
-  const AppTicketsTabs({super.key});
+  final text1;
+  final String text2;
+  const AppTicketsTabs({super.key,required this.text1,required this.text2});
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +17,8 @@ class AppTicketsTabs extends StatelessWidget {
       ),
       child: Row(
         children: [
-          AppTabs(text: "Airlines Tickets",tabBorder: false,),
-          AppTabs(text: "Hotel",tabBorder: true,tabcolor: false,)
+          AppTabs(text: text1,tabBorder: false,),
+          AppTabs(text: text2,tabBorder: true,tabcolor: false,)
         ],
       ),
     );

@@ -5,9 +5,8 @@ import 'package:ticket_app/Base/res/media.dart';
 import 'package:ticket_app/Base/utilities/all_json.dart';
 import 'package:ticket_app/Base/widgets/App_Double_text.dart';
 import 'package:ticket_app/Base/widgets/Ticket_view.dart';
-import 'package:ticket_app/screens/Home/widget/hotel.dart';
+import 'package:ticket_app/screens/Home/widget/hotelsection.dart';
 import 'package:ticket_app/screens/Home/Hotelscreen.dart';
-
 
 import '../../Base/res/style/app_style.dart';
 
@@ -17,7 +16,6 @@ class Homescreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Appstyle.bgcolor,
       body: ListView(
         children: [
           Container(
@@ -83,7 +81,16 @@ class Homescreen extends StatelessWidget {
                   child: Row(
                     children: ticketList
                         .take(3)
-                        .map((singleticket) => TicketView(ticket: singleticket))
+                        .map((singleticket) => GestureDetector(
+                            onTap: () {
+                              var index = ticketList.indexOf(singleticket);
+                              Navigator.pushNamed(
+                                  context, AppRoutes.ticketScreen,
+                                  arguments: {"index": index});
+                            },
+                            child: TicketView(
+                              ticket: singleticket,
+                            )))
                         .toList(),
                   ),
                 ),
@@ -105,7 +112,12 @@ class Homescreen extends StatelessWidget {
                         .map(
                           (fristhotel) => Container(
                             padding: EdgeInsets.all(10),
-                            child: HotelSection(hoteldetails: fristhotel),
+                            child: GestureDetector(
+                              onTap: (){
+                                    var index=hotelList.indexOf(fristhotel);
+                                   Navigator.pushNamed(context, AppRoutes.hotelmoredetail,arguments: {"index":index});
+                              },
+                                child: HotelSection(hoteldetails: fristhotel)),
                           ),
                         )
                         .toList(),

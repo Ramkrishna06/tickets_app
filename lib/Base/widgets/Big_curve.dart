@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ticket_app/Base/res/style/app_style.dart';
 
 class BigCurve extends StatelessWidget {
   final bool isRight;
-  const BigCurve({super.key, required this.isRight});
+  final  bool? isColor;
+  const BigCurve({super.key, required this.isRight,this.isColor});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +14,7 @@ class BigCurve extends StatelessWidget {
       width: 12,
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color:isColor==null?Colors.white:Appstyle.bgcolor,
           borderRadius: isRight == true
               ? BorderRadius.only(
                   topLeft: Radius.circular(20),

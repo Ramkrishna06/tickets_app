@@ -9,20 +9,30 @@ class AllTickets extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title:  Text("All Tickets"),
-      ),
+      appBar: AppBar(title: Text("All tickets")),
       body: ListView(
         children: [
           SingleChildScrollView(
             child: Column(
-              children: ticketList.map(
-                (singleticket) {
-                  return Container(
-                   margin: EdgeInsets.symmetric(vertical: 40),
-                    child: TicketView(ticket: singleticket,wholescreen: true,),);
-                },
-              ).toList(),
+              children: ticketList
+                  .map(
+                    (singleticket) => GestureDetector(
+                      onTap: () {
+                        var index = ticketList.indexOf(singleticket);
+                        print("ticket number $index");
+                         Navigator.pushNamed(context, AppRoutes.ticketScreen,
+                             arguments: {"index": index});
+                      },
+                      child: Container(
+                        margin: EdgeInsets.symmetric(vertical: 40),
+                        child: TicketView(
+                          ticket: singleticket,
+                          wholescreen: true,
+                        ),
+                      ),
+                    ),
+                  )
+                  .toList(),
             ),
           ),
         ],

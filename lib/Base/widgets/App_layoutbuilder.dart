@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 class AppLayoutBuilder extends StatelessWidget {
   final int randomnumber;
   final double width;
+  final bool? isColor;
   const AppLayoutBuilder(
-      {super.key, required this.randomnumber, this.width = 3});
+      {super.key, required this.randomnumber, this.width = 3,this.isColor}
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class AppLayoutBuilder extends StatelessWidget {
               width: width,
               height: 2,
               child: DecoratedBox(
-                decoration: BoxDecoration(color: Colors.white),
+                decoration: BoxDecoration(color:isColor==null?Colors.white:Colors.grey.shade300),
               ),
             ),
           ),

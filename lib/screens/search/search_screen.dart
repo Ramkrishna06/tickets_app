@@ -7,7 +7,7 @@ import 'package:ticket_app/Base/widgets/App_Double_text.dart';
 import 'package:ticket_app/screens/search/widget/app_text-icon.dart';
 import 'package:ticket_app/screens/search/widget/app_tickets_tabs.dart';
 import 'package:ticket_app/screens/search/widget/find_tickets.dart';
-import 'package:ticket_app/screens/search/widget/seach_img_section.dart';
+import 'package:ticket_app/screens/search/widget/ticket_promotion.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
@@ -26,7 +26,7 @@ class SearchScreen extends StatelessWidget {
           SizedBox(
             height: 40,
           ),
-          AppTicketsTabs(),
+          AppTicketsTabs(text1: "Airlines Tickets",text2: "Hotels",),
           SizedBox(
             height: 30,
           ),
@@ -54,7 +54,7 @@ class SearchScreen extends StatelessWidget {
             func: () => Navigator.pushNamed(context, "all_tickets"),
           ),
           SizedBox(height: 20,),
-          Imagesection(),
+          TicketPromotion(),
         ],
       ),
     );

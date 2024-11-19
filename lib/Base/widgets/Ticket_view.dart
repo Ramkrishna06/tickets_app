@@ -11,8 +11,14 @@ import 'package:ticket_app/Base/widgets/Textstyle_third.dart';
 
 class TicketView extends StatelessWidget {
   final bool wholescreen;
-  Map<String, dynamic> ticket;//this is map name as ticket containing necessery information about tickets
-  TicketView({super.key, required this.ticket,this.wholescreen=false});
+  Map<String, dynamic>
+      ticket; //this is map name as ticket containing necessery information about tickets
+  final bool? isColor;
+  TicketView(
+      {super.key,
+      required this.ticket,
+      this.wholescreen = false,
+      this.isColor});
 
   @override
   Widget build(BuildContext context) {
@@ -20,44 +26,68 @@ class TicketView extends StatelessWidget {
     return SizedBox(
       width: size.width * 0.85,
       child: Container(
-        margin: EdgeInsets.only(right: wholescreen==true? 0:16),
+
+        margin: EdgeInsets.only(right: wholescreen == true ? 0 : 12),
+
+
         child: Column(
           children: [
             //blue part ticket
             Container(
               padding: EdgeInsets.all(25),
               decoration: BoxDecoration(
-                  color: Appstyle.ticketBlue,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(21),
-                      topRight: Radius.circular(21))),
+                color: isColor == null
+                    ? Appstyle.ticketBlue
+                    : Appstyle.ticketcolor,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(21),
+                    topRight: Radius.circular(21)),
+              ),
               child: Column(
                 children: [
                   Row(
                     children: [
-                      Textstylethird(text: ticket["from"]["code"]),
+                      Textstylethird(
+                        text: ticket["from"]["code"],
+                        isColor: isColor,
+                      ),
                       Expanded(
                         child: Container(),
                       ),
-                      BigDot(),
+                      BigDot(
+                        isColor: isColor,
+                      ),
                       Expanded(
                         child: Stack(
                           children: [
                             SizedBox(
-                                height: 25,
-                                child: AppLayoutBuilder(randomnumber: 6)),
-                            const Center(
-                                child: Icon(CupertinoIcons.airplane,
-                                    color: Colors.white))
+                              height: 25,
+                              child: AppLayoutBuilder(
+                                randomnumber: 6,
+                                isColor: isColor,
+                              ),
+                            ),
+                            Center(
+                              child: isColor == null
+                                  ? Icon(CupertinoIcons.airplane,
+                                      color: Colors.white)
+                                  : Icon(CupertinoIcons.airplane,
+                                      color: Colors.lightBlue),
+                            ),
                             //if want to rotate icon use widget transform.rotate
                           ],
                         ),
                       ),
-                      BigDot(),
+                      BigDot(
+                        isColor: isColor,
+                      ),
                       Expanded(
                         child: Container(),
                       ),
-                      Textstylethird(text: ticket["to"]["code"]),
+                      Textstylethird(
+                        text: ticket["to"]["code"],
+                        isColor: isColor,
+                      ),
                     ],
                   ),
                   Row(
@@ -66,6 +96,7 @@ class TicketView extends StatelessWidget {
                         width: 100,
                         child: Textstyleforth(
                           text: ticket["from"]["name"],
+                          isColor: isColor,
                         ),
                       ),
                       Expanded(
@@ -73,6 +104,7 @@ class TicketView extends StatelessWidget {
                       ),
                       Textstyleforth(
                         text: ticket["flying_time"],
+                        isColor: isColor,
                       ),
                       Expanded(
                         child: Container(),
@@ -81,6 +113,7 @@ class TicketView extends StatelessWidget {
                         width: 100,
                         child: Textstyleforth(
                           text: ticket["to"]["name"],
+                          isColor: isColor,
                           aling: TextAlign.end,
                         ),
                       ),
@@ -92,19 +125,23 @@ class TicketView extends StatelessWidget {
             //circle ant dots
             Container(
               height: 20,
-              color: Appstyle.ticketorange,
+              color: isColor == null
+                  ? Appstyle.ticketorange
+                  : Appstyle.ticketcolor,
               child: Row(
                 children: [
                   BigCurve(
                     isRight: false,
+                    isColor:isColor,
                   ),
                   Expanded(
                     child: AppLayoutBuilder(
                       randomnumber: 14,
                       width: 6,
+                      isColor: isColor,
                     ),
                   ),
-                  BigCurve(isRight: true),
+                  BigCurve(isRight: true,isColor: isColor,),
                 ],
               ),
             ),
@@ -112,23 +149,28 @@ class TicketView extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(25),
               decoration: BoxDecoration(
-                  color: Appstyle.ticketorange,
+                  color: isColor == null
+                      ? Appstyle.ticketorange
+                      : Appstyle.ticketcolor,
                   borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(21),
-                      bottomRight: Radius.circular(21))),
+                      bottomLeft: Radius.circular(isColor==null?21:0),
+                      bottomRight: Radius.circular(isColor==null?21:0))),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  AppColoumTextLayout(toptext: ticket["date"], bottomtext: "Date"),
+                  AppColoumTextLayout(
+                      toptext: ticket["date"], bottomtext: "Date",isColor: isColor,),
                   AppColoumTextLayout(
                     toptext: ticket["departure_time"],
                     bottomtext: "Departure time",
                     aling: CrossAxisAlignment.center,
+                    isColor: isColor,
                   ),
                   AppColoumTextLayout(
                     toptext: ticket["number"].toString(),
                     bottomtext: "Number",
                     aling: CrossAxisAlignment.end,
+                    isColor: isColor,
                   ),
                 ],
               ),

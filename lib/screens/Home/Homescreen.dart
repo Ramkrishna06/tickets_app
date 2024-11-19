@@ -17,7 +17,6 @@ class Homescreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Appstyle.bgcolor,
       body: ListView(
         children: [
           Container(

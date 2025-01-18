@@ -1,8 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:ticket_app/Base/res/media.dart';
 import 'package:ticket_app/Base/res/style/app_style.dart';
 import 'package:ticket_app/Base/utilities/all_json.dart';
+import 'package:ticket_app/Provider/text_expansion.dart';
+
+import '../../../controller/hotelmore_controller.dart';
 
 class Hotelmoredetails extends StatefulWidget {
   const Hotelmoredetails({super.key});
@@ -103,14 +109,16 @@ class _HotelmoredetailsState extends State<Hotelmoredetails> {
                       scrollDirection: Axis.horizontal,
                       itemCount: hotelList[hotelindex]['images'].length,
                       itemBuilder: (context, imagesindex) {
-                        print("  number is ${hotelList[imagesindex]['images'][0]}");
+                        print(
+                            "  number is ${hotelList[imagesindex]['images'][0]}");
                         return Container(
                           margin: EdgeInsets.all(16),
                           color: Colors.blue,
                           child:
                               // Image.network(
                               //     "https://placehold.co/200x200/png")
-                              Image.asset("assets/images/${ hotelList[hotelindex]['images'][imagesindex]}"),
+                              Image.asset(
+                                  "assets/images/${hotelList[hotelindex]['images'][imagesindex]}"),
                         );
                       }),
                 )
@@ -123,43 +131,60 @@ class _HotelmoredetailsState extends State<Hotelmoredetails> {
   }
 }
 
-class ExpandedTextWidget extends StatefulWidget {
-  const ExpandedTextWidget({super.key, required this.text});
+class ExpandedTextWidget extends ConsumerWidget {
+  ExpandedTextWidget({super.key, required this.text});
   final String text;
+ //used in GetX (state management)
+  //final TextExpansionController controller = Get.put(TextExpansionController());
 
   @override
-  State<ExpandedTextWidget> createState() => _ExpandedTextWidgetState();
-}
-
-class _ExpandedTextWidgetState extends State<ExpandedTextWidget> {
-  bool isExpanded = true;
-
-  _istoggleExpandable() {
-    setState(() {
-      isExpanded = !isExpanded;
-    });
-
-    print(" value is  print= $isExpanded");
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,WidgetRef ref) {
+    var provider=ref.watch(textExpansionNotifierProvider);
+   // return Obx((){
+   //   // var textwidget = Text(
+   //   //   text,
+   //   //   maxLines: controller.isExpanded.value ? 9 : null,
+   //   //   overflow: controller.isExpanded.value
+   //   //       ? TextOverflow.ellipsis
+   //   //       : TextOverflow.visible,
+   //   // );
+   //   //
+   //   // return Column(
+   //   //   crossAxisAlignment: CrossAxisAlignment.start,
+   //   //   children: [
+   //   //     textwidget,
+   //   //     GestureDetector(
+   //   //       onTap: () {
+   //   //         controller.istoggleExpandable();
+   //   //       },
+   //   //       //child: isExpanded?Text("More"):Text("Less"),)
+   //   //       child: Text(
+   //   //         controller.isExpanded.value ? "More" : "Less",
+   //   //         style: TextStyle(color: Appstyle.ticketBlue),
+   //   //       ),
+   //   //     )
+   //   //   ],
+   //   // );
+   // });
     var textwidget = Text(
-      widget.text,
-      maxLines: isExpanded ? 9 : null,
-      overflow: isExpanded ? TextOverflow.ellipsis : TextOverflow.visible,
+      text,
+      maxLines: provider ? 9 : null,
+      overflow: provider
+          ? TextOverflow.ellipsis
+          : TextOverflow.visible,
     );
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         textwidget,
         GestureDetector(
           onTap: () {
-            _istoggleExpandable();
+            ref.watch(textExpansionNotifierProvider.notifier).istoggleExpandable(provider);
           },
           //child: isExpanded?Text("More"):Text("Less"),)
           child: Text(
-            isExpanded ? "More" : "Less",
+            provider? "More" : "Less",
             style: TextStyle(color: Appstyle.ticketBlue),
           ),
         )

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:ticket_app/Base/utilities/all_json.dart';
 import 'package:ticket_app/screens/Home/Hotelscreen.dart';
 import 'package:ticket_app/screens/Home/all_tickets.dart';
@@ -8,7 +10,9 @@ import 'package:ticket_app/screens/tickets/ticket_screen.dart';
 import 'Base/bottom_nav_bar.dart';
 
 void main() {
-  runApp(const MyApp());
+ // runApp(const MyApp());
+  runApp(ProviderScope(child: MyApp()));
+
   // Testcase test = new Testcase(x: 4, y: 7);
   // print(test.x);
   //
@@ -32,7 +36,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       //home: BottomNavBar(),
       routes: {
@@ -40,8 +44,8 @@ class MyApp extends StatelessWidget {
         "/": (context) => BottomNavBar(),
         "all_tickets": (context) => AllTickets(),
         "hotel_screen": (context) => HotelScreen(),
-        AppRoutes.ticketScreen: (context) => const TicketScreen(),
-        AppRoutes.hotelmoredetail: (context) => const Hotelmoredetails(),
+        AppRoutes.ticketScreen: (context) =>  TicketScreen(),
+        AppRoutes.hotelmoredetail: (context) =>  Hotelmoredetails(),
       },
     );
   }

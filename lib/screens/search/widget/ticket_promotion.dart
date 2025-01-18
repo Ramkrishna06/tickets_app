@@ -16,15 +16,16 @@ class TicketPromotion extends StatelessWidget {
           width: size.width * .44,
           padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
           decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(18),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.shade500,
-                  blurRadius: 2,
-                  spreadRadius: 1,
-                )
-              ]),
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(18),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.shade500,
+                blurRadius: 2,
+                spreadRadius: 1,
+              )
+            ],
+          ),
           child: Column(
             children: [
               Container(
